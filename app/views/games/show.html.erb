@@ -1,0 +1,16 @@
+<div class="container mt-5">
+	<h2 class="text-center">Game Details</h2>
+	<ul class="list-group">
+		<li class="list-group-item"><strong>Game ID:</strong> <%= @game.id %></li>
+		<li class="list-group-item"><strong>Date Started:</strong> <%= @game.started_at.strftime("%Y-%m-%d %H:%M") %></li>
+		<li class="list-group-item"><strong>Number of Players:</strong> <%= @game.number_of_players %></li>
+		<li class="list-group-item"><strong>Number of Sides:</strong> <%= @game.number_of_sides %></li>
+		<li class="list-group-item"><strong>Number of Dice:</strong> <%= @game.number_of_dice %></li>
+	</ul>
+	<div class="game-summary">
+		<%= raw JSON.parse(@game.summary).join("<br>") %>
+	</div>
+	<div class="mt-4">
+		<%= link_to 'Back to Game History', game_history_path, class: 'btn btn-secondary' %>
+	</div>
+</div>

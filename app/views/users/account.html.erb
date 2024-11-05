@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+	<div class="card" style="width: 600px;">
+		<div class="card-body p-4">
+			<!-- Added uniform padding -->
+			<div class="d-flex align-items-center justify-content-between mb-4">
+				<!-- Adjusted spacing here for consistency -->
+				<div class="d-flex align-items-center">
+					<img src="assets/penguin.png" class="img-fluid rounded-circle" width="70" alt="Profile Image">
+					<div class="ml-2">
+						<h5 class="card-title">👋 Hello, <%= current_user.username %>!</h5>
+						<p class="card-text text-muted"><%= current_user.email %></p>
+					</div>
+				</div>
+				<%= button_to 'Logout', sign_out_url, method: :delete, class: 'btn btn-danger btn-md ms-auto' %>
+			</div>
+			<div class="row mt-4">
+				<div class="col-6">
+					<%= link_to 'Play New Game', new_game_path, class: 'btn btn-primary btn-lg w-100' %>
+				</div>
+				<div class="col-6">
+					<%= link_to 'View Game History', game_history_path, class: 'btn btn-secondary btn-lg w-100' %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

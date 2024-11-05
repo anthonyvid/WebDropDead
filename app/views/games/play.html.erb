@@ -1,0 +1,41 @@
+<div class="container mt-5">
+	<h2 class="text-center">Playing Drop Dead Dice!</h2>
+	<div class="card mt-4">
+		<div class="card-body text-center">
+			<h5>Game Settings:</h5>
+			<p><strong>Number of Players:</strong> <%= @game.number_of_players %></p>
+			<p><strong>Number of Sides on Die:</strong> <%= @game.number_of_sides %></p>
+			<p><strong>Number of Dice:</strong> <%= @game.number_of_dice %></p>
+			<p><strong>Started At:</strong> <span id="started-at" data-utc="<%= @game.started_at.utc.iso8601 %>"></span></p>
+			<div class="game-summary">
+				<%= raw JSON.parse(@game.summary).join("<br>") %>
+			</div>
+			<div class="mt-4">
+				<%= button_to 'Play Again', replay_game_path(@game), method: :post, class: 'btn btn-primary btn-lg mx-2' %>
+				<%= button_to 'Change Settings', new_game_path, method: :get, class: 'btn btn-secondary btn-lg mx-2' %>
+				<%= link_to 'Go Back', account_path, class: 'btn btn-danger btn-lg mx-2' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    const startedAtElement = document.getElementById("started-at");
+	    const utcTime = startedAtElement.getAttribute("data-utc");
+	
+	    // Convert UTC time to local time
+	    const localDate = new Date(utcTime);
+	    const options = {
+	        year: 'numeric',
+	        month: 'long',
+	        day: 'numeric',
+	        hour: '2-digit',
+	        minute: '2-digit',
+	        hour12: true
+	    };
+	
+	    // Display the local time
+	    startedAtElement.textContent = localDate.toLocaleString('en-US', options);
+	});
+</script>
